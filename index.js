@@ -63,4 +63,25 @@ function isAnagram(first,second) {
 }
 
 console.log(isAnagram('anagram','nagaramm'));
-* 3) anagram ends [frequency pattern] */
+/* 3) anagram ends [frequency pattern] */
+
+/* 4) maxsum substring [sliding window] O(n) */
+
+function maxSubString(a,num){
+  let maxSum=0;
+  let tempSum=0;
+  if(a.length<num) return null;
+  for(let i=0;i<num;i++){
+    maxSum+=a[i]
+  }
+  tempSum=maxSum;
+  for(let j=num;j<a.length;j++){
+    tempSum=tempSum - a[j-num] +a[j];
+    maxSum= Math.max(tempSum,maxSum);
+  }
+  return maxSum;
+}
+
+console.log(maxSubString([3,5,1,8],2));
+
+/* 4) maxsum substring [sliding window] O(n) ends */
