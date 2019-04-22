@@ -1,0 +1,29 @@
+//solution 1
+
+let name='vipin';
+
+function reverse1(){
+  
+  return name.split('').reverse().join('');
+}
+console.log(reverse1());
+
+//solution 2
+
+function reverse2(){
+  let reverse='';
+  for(let character of name){
+    reverse=character+reverse
+  }
+  return reverse;
+}
+console.log(reverse2());
+
+//solution 3
+
+function reverse3(){
+ return name.split('').reduce((reversed,character)=>{
+   return character+reversed;
+ },'');
+}
+console.log(reverse3());
