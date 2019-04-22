@@ -1,4 +1,4 @@
-  /* 1) count unique values O(N) */
+  /* 1) count unique values O(N) [frequency pattern] */
   
   function countUniqueValues(sortedArray) {
      let unique={};
@@ -14,9 +14,9 @@
    }
 console.log(countUniqueValues([1,2,3,4,4,4,7,4,12,14,13]));
 
-/* 1) count unique values O(N) ends */
+/* 1) count unique values O(N) ends [frequency pattern]*/
 
-  /* 2) compare 2 arrays */
+  /* 2) compare 2 arrays [frequency pattern]*/
 function countFrequency(array) {
     let freq = {};
     array.forEach(e => {
@@ -38,4 +38,4 @@ function sameElementFrequency(array1, array2) {
 
 console.log(sameElementFrequency([1,2,2,3], [2,1,2,3]));
 
- /* 2) compare 2 arrays ends */
+ /* 2) compare 2 arrays ends [frequency pattern] */
