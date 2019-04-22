@@ -39,3 +39,28 @@ function sameElementFrequency(array1, array2) {
 console.log(sameElementFrequency([1,2,2,3], [2,1,2,3]));
 
  /* 2) compare 2 arrays ends [frequency pattern] */
+/* 3) anagram [frequency pattern]  */
+function isAnagram(first,second) {
+  let lookup={};
+  if(first.length!==second.length){
+    return false;
+  }
+  for(let i=0;i<first.length;i++){
+    let letter=first[i];
+    lookup[letter] ? lookup[letter]+=1 : lookup[letter]=1;
+  }
+  console.log(lookup)
+  for(let j=0;j<second.length;j++){
+  let letter=second[j];
+   if(!lookup[letter]) {
+   return false;
+   }
+   else{
+     lookup[letter]-=1;
+   }
+  }
+  return true;
+}
+
+console.log(isAnagram('anagram','nagaramm'));
+* 3) anagram ends [frequency pattern] */
