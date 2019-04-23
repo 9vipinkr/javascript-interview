@@ -1,0 +1,38 @@
+// solution 1
+function chunk(arr,size){
+   let chunkedArray=[];
+   let index=0;
+   while(index<arr.length){
+     if(index===arr.length-1){
+       chunkedArray.push([arr[index]])
+     }
+     else{
+       chunkedArray.push(arr.slice(index,index+size));
+     }
+     
+     index+=size;     
+   }
+   return chunkedArray;
+}
+
+console.log(chunk([2,5,3,6,7],2))
+
+// solution 2
+function chunk1(arr,size){
+  
+  let chunkedArray=[];
+  
+  for(let element of arr){
+    const last = chunkedArray[chunkedArray.length-1];
+    
+    if(!last || last.length===size){
+      chunkedArray.push([element]);
+    }
+    else{
+      last.push(element);
+    }
+  }
+  return chunkedArray;
+}
+
+console.log(chunk1([22,35,33,66,77],2))
