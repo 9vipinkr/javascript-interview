@@ -1,7 +1,7 @@
 // iterative
 
 function pyramid(n){
-  const mid=Math.floor((2*n-1)/2)
+  const mid=Math.floor((2*n-1)/2);
   for(let row = 0; row<n; row++){
     let level='';
     for(let col = 0; col<2*n-1; col++){
@@ -17,3 +17,27 @@ function pyramid(n){
 }
 
 pyramid(3);
+
+// recursive
+
+function pyramid1(n,row=0,level=''){
+  const mid=Math.floor((2*n-1)/2);
+  if(row===n){
+    return;
+  }
+  
+  if(level.length===2*n-1){
+    console.log(level);
+    return pyramid1(n,row+1);
+  }
+  
+  if(mid-row <= level.length && mid+row >= level.length){
+    level+='#';
+  }
+  else{
+    level+=' ';
+  }
+  pyramid1(n,row,level);
+}
+
+pyramid1(4);
