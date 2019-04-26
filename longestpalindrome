@@ -1,0 +1,64 @@
+// longest palindrome in string using dynamic programming
+
+function longestPalindrome(str){
+  
+  let strlength=str.length;
+  let table=[];
+  let start=0;
+  let maxLength=0;
+  let palindromeBeginsAt = 0; 
+  var finalArray = [];
+  
+  if(strlength===1){
+     finalArray.push(str);
+  }
+  
+  else if(strlength===2){
+    finalArray.push(str);
+  }
+  
+  else{
+    // create a multi dimensional array
+    for(let i=0;i<strlength;i++){
+    table.push([]);
+   }
+  //set default to false
+  for(let i=0;i<strlength;i++){
+    for(let j=0;j<strlength;j++){
+    table[i][j]=false;
+   }
+  }
+  // for a string of length 1, all strings are palindroms. Set to true
+  for(let i=0;i<strlength;i++){
+    table[i][i]=true;
+  }  
+  // for a string of length 2, compare i, and i+1 th ch
+ for(let i=0;i<strlength-2;i++){
+    if(str[i]===str[i+1]){
+      table[i][i+1]=true;
+       start = i;
+       palindromeBeginsAt = i;
+       maxLength=2;
+       finalArray.push(str.substring(palindromeBeginsAt, maxLength + palindromeBeginsAt));
+    }
+  }
+  
+  // Check for lengths greater than 2. k is length of substring
+      for(let k = 3; k <= strlength; k++) {	            
+        for (let i = 0; i < strlength-k+1; i++) {
+	              let j = i+k-1;
+	              if (str[i] == str[j] && table[i+1][j-1]){
+	                table[i][j] = true; 
+	                palindromeBeginsAt = i;
+	               maxLength= k;
+	                finalArray.push(str.substring(palindromeBeginsAt, maxLength + palindromeBeginsAt));
+	              }
+	            }
+          }
+         
+	        }
+  
+   return str.substring(palindromeBeginsAt, maxLength + palindromeBeginsAt);
+  // return finalArray;
+}
+console.log(longestPalindrome('aabxcc'));
