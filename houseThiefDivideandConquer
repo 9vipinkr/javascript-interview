@@ -1,0 +1,28 @@
+/*
+There are n houses build in a line, 
+each of which contains some value in it. 
+A thief is going to steal the maximal value of these houses, 
+but he can’t steal in two adjacent houses 
+because owner of the stolen houses will tell his two neighbour left and 
+right side.
+What is the maximum stolen value.
+
+*/
+function houseThief(houseNetWorth,currentIndex){
+  let stealCurrent;
+  let skipCurrent;
+
+  if(currentIndex>=houseNetWorth.length){
+    return 0;
+  }
+  
+   stealCurrent=houseNetWorth[currentIndex]+houseThief(houseNetWorth,currentIndex+2);
+   skipCurrent=houseThief(houseNetWorth,currentIndex+1);
+   
+  return Math.max(stealCurrent,skipCurrent);
+}
+
+let houseNetWorth=[6,7,1,30,8,2,4];
+console.log(houseThief(houseNetWorth,0));
+
+ // o/p: 7,30,4 =41
