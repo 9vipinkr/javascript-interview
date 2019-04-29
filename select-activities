@@ -1,0 +1,28 @@
+// greedy algorithm to select max activities that a user can do
+
+function activity(){
+  let selectedActivities=[];
+  let previousActivity={};
+  let activities=[{name:'A1',startTime:0,finishTime:6},
+  {name:'A2',startTime:3,finishTime:4},
+  {name:'A3',startTime:1,finishTime:2},
+  {name:'A4',startTime:5,finishTime:8},
+  {name:'A5',startTime:5,finishTime:7},
+  {name:'A6',startTime:8,finishTime:9}]
+  
+  console.log( activities.sort((a,b) => a.finishTime-b.finishTime));
+  
+  previousActivity=activities[0];
+  selectedActivities.push(previousActivity);
+  for(let i=1;i<activities.length;i++){
+    if(activities[i].startTime>=previousActivity.finishTime){
+      previousActivity=activities[i];
+      selectedActivities.push(previousActivity);
+    }
+  }
+  
+  console.log('selected activities: ');
+  return selectedActivities;
+}
+
+console.log(activity());
