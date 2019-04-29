@@ -10,11 +10,13 @@ function longestPalindrome(str){
   var finalArray = [];
   
   if(strlength===1){
-     finalArray.push(str);
+     // finalArray.push(str);
+     return str;
   }
   
   else if(strlength===2){
     finalArray.push(str);
+    return str;
   }
   
   else{
@@ -55,10 +57,10 @@ function longestPalindrome(str){
 	              }
 	            }
           }
-         
+            return str.substring(palindromeBeginsAt, maxLength + palindromeBeginsAt);
 	        }
   
-   return str.substring(palindromeBeginsAt, maxLength + palindromeBeginsAt);
+
   // return finalArray;
 }
 console.log(longestPalindrome('aabxcc'));
