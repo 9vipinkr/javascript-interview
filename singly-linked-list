@@ -110,6 +110,26 @@ class SinglyLinkedList{
       removedNode.next=null;
       return removedNode;
     }
+     //insert item into list at index
+    insert(index,val){
+      let newNode=new Node(val);
+      if(index<0 || index > this.length){
+        return undefined;
+      }
+      if(index==0){
+        return this.unshift(val);
+      }
+      if(index===this.length-1){
+        return this.push(val);
+      }
+      let prevNode=this.get(index-1);
+      console.log('prev node: '+prevNode)
+      let temp=prevNode.next;
+      prevNode.next=newNode;
+       newNode.next=temp;
+      this.lenght++;
+      return this;
+    }
   }
 
 
