@@ -11,7 +11,7 @@ class SinglyLinkedList{
         this.tail = null;
         this.length = 0;
     }
-    // push item to list
+    // push item to last of list
     push(val){
         var newNode = new Node(val);
         if(!this.head){
@@ -24,8 +24,85 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
-}
+    //remove last item from list
+    pop(){
+      //if no items in list
+      if(!this.head) return undefined;
+      let current=this.head;
+      let newTail=current;
+      while(current.next){
+        newTail=current;
+        current=current.next;
+      }
+      this.tail=newTail;
+      this.tail.next=null;
+      this.length--;
+      if(this.length===0){
+        this.head = null;
+        this.tail = null;
+      }
+      return current;
+    }
+    //remove first item from list
+    shift(){
+      //if no items in list
+      if(!this.head) return undefined;
+      let currentHead=this.head;
+      this.head=currentHead.next
+      this.length--;
+       if(this.length===0){
+        this.tail = null;
+      }
+       return currentHead;
+      }
+      
+      //insert first item to list
+    unshift(val){
+      let newNode=new Node(val);
+      if(!this.head){
+        this.head=newNode;
+        this.tail=this.head;
+      }
+      else{
+        newNode.next=this.head;
+        this.head=newNode;
+      }
+       this.length++;
+       return this;
+    }
+      
+      //get item from list at index
+    get(index){
+      if(index<0 || index >= this.length){
+        return undefined;
+      }
+      let counter=0;
+      let current=this.head;
+      while(counter!==index){
+        counter++;
+        current=current.next;
+      }
+      return current;
+    }
+    
+    //set or update value at index
+    set(index,val){
+     let nodeToUpdate=this.get(index);
+     if(nodeToUpdate!==undefined){
+       nodeToUpdate.val=val;
+     }
+      return this;
+    }
+    
+  }
+
 
 var list = new SinglyLinkedList()
-// list.push("HELLO")
-// list.push("GOODBYE")
+list.push('1');
+list.push('2');
+list.push('3');
+list.unshift('4');
+console.log(list.get(3));
+list.set(3,'8');
+console.log(list.get(3));
+
