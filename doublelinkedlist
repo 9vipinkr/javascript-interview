@@ -1,0 +1,157 @@
+class Node{
+    constructor(val){
+        this.val = val;
+        this.prev= null;
+        this.next = null;
+    }
+}
+
+class DoubleLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    // push item to last of list
+    push(val){
+        let newNode = new Node(val);
+        if(this.length===0){
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev=this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    //remove last item from list
+    pop(){
+      //if no items in list
+      if(!this.head) return undefined;
+      let poppedNode=this.tail;
+      if(this.length===1){
+        this.head = null;
+        this.tail = null;
+       }
+       else{
+         this.tail=poppedNode.prev;
+         this.tail.next=null;
+         poppedNode.prev=null;
+       }
+      this.length--;
+      
+      return poppedNode;
+    }
+   //remove first item from list
+    shift(){
+      //if no items in list
+      if(!this.head) return undefined;
+      let currentHead=this.head;
+      this.head=currentHead.next;
+      this.head.prev=null;
+      currentHead.next=null
+      this.length--;
+       if(this.length===0){
+        this.tail = null;
+      }
+       return currentHead;
+      }
+      //insert first item to list
+    unshift(val){
+      let newNode=new Node(val);
+      if(!this.head){
+        this.head=newNode;
+        this.tail=this.head;
+      }
+      else{
+        this.head.prev=newNode;
+        newNode.next=this.head;
+        this.head=newNode;
+      }
+       this.length++;
+       return this;
+    }
+    
+      //get item from list at index
+    get(index){
+      if(index<0 || index >= this.length){
+        return undefined;
+      }
+      let counter=0;
+      let current=this.head;
+      while(counter!==index){
+        counter++;
+        current=current.next;
+      }
+      return current;
+    }
+    
+    //set or update value at index
+    set(index,val){
+     let nodeToUpdate=this.get(index);
+     if(nodeToUpdate!==undefined){
+       nodeToUpdate.val=val;
+     }
+      return this;
+    }
+    
+    //remove item from list at index
+    remove(index){
+      if(index<0 || index >= this.length){
+        return undefined;
+      }
+      if(index==0){
+        return this.shift();
+      }
+      if(index==this.length-1){
+        return this.pop();
+      }
+      let prevNode=this.get(index-1);
+      let removedNode=prevNode.next;
+      let nextNode=removedNode.next;
+      prevNode.next=nextNode;
+      nextNode.prev=prevNode;
+      removedNode.next=null;
+      removedNode.prev=null;
+      return removedNode;
+    }
+     //insert item into list at index
+    insert(index,val){
+      let newNode=new Node(val);
+      if(index<0 || index > this.length){
+        return undefined;
+      }
+      if(index==0){
+        return this.unshift(val);
+      }
+      if(index===this.length-1){
+        return this.push(val);
+      }
+      let prevNode=this.get(index-1);
+      console.log('prev node: '+prevNode)
+      let temp=prevNode.next;
+      newNode.next=temp
+      temp.prev=newNode;
+      prevNode.next=newNode;
+      newNode.prev=prevNode;
+      this.lenght++;
+      return this;
+    }
+  }
+
+
+var list = new DoubleLinkedList();
+list.push('1');
+list.push('2');
+list.push('4');
+list.insert(2,'3');
+console.log(list);
+
+
+
+
+
+
+
