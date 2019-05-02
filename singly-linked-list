@@ -11,6 +11,7 @@ class SinglyLinkedList{
         this.tail = null;
         this.length = 0;
     }
+    // push item to list
     push(val){
         var newNode = new Node(val);
         if(!this.head){
