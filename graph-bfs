@@ -52,3 +52,11 @@ g.addEdge("D","F")
 g.addEdge("E","F")
 
 console.log(g.breadthFirstIterative('A'));// [ "A", "B", "C", "D", "E", "F" ]
+
+//          A
+//        /   \
+//       B     C
+//       |     |
+//       D --- E
+//        \   /
+//          F
