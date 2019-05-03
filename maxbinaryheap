@@ -42,15 +42,15 @@ dequeue(){
 
             if(leftChildIdx < length){
                 leftChild = this.values[leftChildIdx];
-                if(leftChild.priority < element.priority) {
+                if(leftChild < element) {
                     swap = leftChildIdx;
                 }
             }
             if(rightChildIdx < length){
                 rightChild = this.values[rightChildIdx];
                 if(
-                    (swap === null && rightChild.priority < element.priority) || 
-                    (swap !== null && rightChild.priority < leftChild.priority)
+                    (swap === null && rightChild < element) || 
+                    (swap !== null && rightChild < leftChild)
                 ) {
                    swap = rightChildIdx;
                 }
@@ -61,10 +61,12 @@ dequeue(){
             idx = swap;
         }
     }
-
+}
 let heap = new MaxBinaryHeap();
 heap.insert('1');
 heap.insert('5');
 heap.insert('8');
 heap.insert('2');
 console.log(heap); //{ "values": [ "8", "2", "5", "1" ] }
+
+console.log(heap.dequeue()); //8
