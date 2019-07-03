@@ -1,0 +1,11 @@
+function outer(num1){
+  
+ function inner(num2){
+   return num1+num2; 
+ }
+ return inner;
+}
+
+var get_inner=outer(4);
+console.log(get_inner(5));
+console.dir(get_inner);
