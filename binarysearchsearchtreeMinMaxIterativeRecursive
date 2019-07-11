@@ -1,0 +1,226 @@
+class Node{
+  constructor(val){
+    this.val=val;
+    this.left=null;
+    this.right=null;
+  }
+}
+
+class BinarySearchTree{
+
+  constructor(){
+    this.root=null;
+  }
+  //insert in binary search tree
+  insert(val){
+    var newNode=new Node(val);
+    if(!this.root){
+      this.root=newNode;
+      return this;
+    }
+    else{
+      var current=this.root;
+      while(true){
+       //1) value equal to current
+       if(val===current.val) return undefined;
+       
+       //2) value less than current
+       else if(val<current.val){
+         if(current.left===null){
+           current.left=newNode;
+           return this;
+         }
+         current=current.left;
+    
+      }
+       //3)value greater than current
+        else{
+        if(current.right===null){
+          current.right=newNode;
+           return this;
+         }
+         current=current.right;
+      }
+    }
+  }
+ }
+  //find if node value exists return node
+ find(value){
+   if(this.root===null) return undefined;
+   
+   var current=this.root;
+   var found=false;
+   // loop until current is not null and found is false
+   while(current && !found){
+     //value found return
+      if(value===current.val){
+        found=true;
+        return current;
+      }
+       //update current
+      else if(value<current.val){
+        current=current.left;
+      }
+      //update current
+      else if(value>current.val){
+        current=current.right;
+      }
+   }
+     if(!found){
+       return undefined;
+     }
+ }
+ 
+  //find if node value exists return boolean
+ contains(value){
+   if(this.root===null){
+     return false;
+   }
+   var current=this.root;
+   var found=false;
+   while(current &&!found){
+     //return found 
+      if(value===current.val){
+        found=true;
+        return found;
+      }
+       //update current
+      else if(value<current.val){
+        current=current.left;
+      }
+      //update current
+      else if(value>current.val){
+        current=current.right;
+      }
+   }
+   return found;
+ }
+ 
+ bfs(){
+   var data=[];
+   var queue=[];
+   queue.push(this.root);
+   while(queue.length>0){
+     var node=queue.shift();
+     data.push(node.val);
+     if(node.left!==null) queue.push(node.left);
+     if(node.right!==null) queue.push(node.right);
+   }
+   return data;
+ }
+ // dfs preorder
+ dfsPreorder(){
+   var data=[];
+   function traverse(node){
+     data.push(node.val);
+     if(node.left!==null) traverse(node.left);
+     if(node.right!==null) traverse(node.right);
+   }
+   traverse(this.root);
+   return data;
+ }
+ 
+ //dfs inorder
+  dfsInorder(){
+   var data=[];
+   function traverse(node){
+     if(node.left!==null) traverse(node.left);
+     data.push(node.val);
+     if(node.right!==null) traverse(node.right);
+   }
+  traverse(this.root);
+   return data;
+ }
+ 
+ // dfs postorder
+  dfsPostorder(){
+   var data=[];
+   function traverse(node){
+     if(node.left!==null) traverse(node.left);
+     if(node.right!==null) traverse(node.right);
+      data.push(node.val);
+   }
+   traverse(this.root);
+   return data;
+ }
+ //min iterative
+ minIterative(){
+   var min;
+   var current=this.root;
+   if(current)min=this.root.val;
+   while(current){
+     if(current.val<min){
+       min=current.val;
+     }
+     current=current.left;
+   }
+   return min;
+ }
+ //max iterative
+ maxIterative(){
+   var max;
+   var current=this.root;
+   if(current)max=this.root.val;
+   while(current){
+     if(current.val>max){
+       max=current.val;
+     }
+     current=current.right;
+   }
+   return max;
+ }
+ //min Reccursive
+ minRecursive(node){
+   
+   //get last node from lest
+  if(node.left===null){
+    return node.val;
+  } 
+  else{
+     return this.minRecursive(node.left);
+  }
+ }
+  //min Reccursive
+ maxRecursive(node){
+   
+   //get last node from lest
+  if(node.right===null){
+    return node.val;
+  } 
+  else{
+     return this.maxRecursive(node.right);
+  }
+ }
+ 
+}
+
+var binarySearchTree=new BinarySearchTree();
+binarySearchTree.insert(100);
+binarySearchTree.insert(50);
+binarySearchTree.insert(150);
+binarySearchTree.insert(60);
+binarySearchTree.insert(40);
+binarySearchTree.insert(175);
+binarySearchTree.insert(125);
+//console.log(binarySearchTree.root)
+console.log('Find and return node');
+console.log(binarySearchTree.find(150));
+console.log('Find and return boolean');
+console.log(binarySearchTree.contains(150));
+console.log('BFS');
+console.log(binarySearchTree.bfs())
+console.log('DFS Preorder');
+console.log(binarySearchTree.dfsPreorder());
+console.log('DFS Inorder');
+console.log(binarySearchTree.dfsInorder());
+console.log('DFS Postorder');
+console.log(binarySearchTree.dfsPostorder());
+console.log('min iterative');
+console.log(binarySearchTree.minIterative());
+console.log('max iterative');
+console.log(binarySearchTree.maxIterative());
+console.log('min recursive');
+console.log(binarySearchTree.minRecursive(binarySearchTree.root));
+console.log('max recursive');
+console.log(binarySearchTree.mRecursive(binarySearchTree.root));
+
